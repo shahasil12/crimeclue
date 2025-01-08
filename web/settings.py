@@ -27,6 +27,8 @@ SECRET_KEY = 'django-insecure-1g)!!^bobdiy4#u+50ye(o*iwfmbeeq*5ic*0$i(bwge((juyn
 DEBUG = True
 
 ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
+import pymysql
+pymysql.install_as_MySQLdb()
 
 
 
