@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Counseling Report</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'clue/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'clue/css/style.css' %}">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Submit Counseling Report</h2>
+    <h4>Crime Report ID: {{ crime_report.id }}</h4>
+    <p><strong>Category:</strong> {{ crime_report.category }}</p>
+    <p><strong>Date:</strong> {{ crime_report.date }}</p>
+    <p><strong>Location:</strong> {{ crime_report.location }}</p>
+    <p><strong>Status:</strong> {{ crime_report.get_status_display }}</p>
+    <p><strong>Reported By:</strong> {{ crime_report.reported_by }}</p>
+    <p><strong>Comment:</strong> {{ crime_report.comment }}</p>
+
+    <form method="post" onsubmit="return confirmSubmission()">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="report_details">Counseling Report Details</label>
+            <textarea id="report_details" name="report_details" class="form-control" rows="6" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Submit Report</button>
+    </form>
+</div>
+
+<script>
+    function confirmSubmission() {
+        return confirm('Are you sure you want to submit this report?');
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

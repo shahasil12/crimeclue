@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Principal Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'clue/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'clue/css/bootstrap.min.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .header-content { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+
+        .user-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .bg-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            color: #007bff;
+        }
+
+        .user-right form {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .btn-custom {
+            width: 100%;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .btn-custom-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-custom-warning {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .btn-custom-outline {
+            background-color: transparent;
+            color: #007bff;
+            border: 2px solid #007bff;
+        }
+
+        .btn-custom-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .card-progress .card-indicator div {
+            transition: width 0.5s ease-in-out;
+        }
+
+        .badge-success {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            color: #333;
+            text-align: center;
+        }
+
+        .analytics {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .card-container .card {
+            width: 18rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="user-left">
+                <div class="bg-img">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                {% if request.session.USERNAME %}
+                    <span>Welcome, {{ request.session.USERNAME }}</span>
+                {% else %}
+                    <span>Error: Username not found</span>
+                {% endif %}
+            </div>
+            <div class="user-right">
+                <form action="/logout/" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-info">Logout</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Functional Cards (Placed on the top) -->
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card">
+                        <i class="fa-solid fa-check"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Crime Reports</h5>
+                            <a href="{% url 'crime_report_table' %}" class="btn btn-custom btn-custom-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">View Investigation Reports</h5>
+                            <a href="{% url 'investigate_table' %}" class="btn btn-custom btn-custom-primary">View Investigation Reports</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Take Action</h5>
+                            <a href="{% url 'crime_detail'%}" class="btn btn-custom btn-custom-primary">Take Action</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Approve Counseling</h5>
+                            <a href="/reports/" class="btn btn-custom btn-custom-primary">Approve</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Summary (Status Cards) -->
+        <div class="page-header mt-4">
+            <h1 align="center">Dashboard</h1>
+            <!-- <small>Home / Dashboard</small> -->
+        </div>
+
+        <div class="analytics">
+            <div class="card">
+                <div class="card-head">
+                    <h2>{{ total_cases }}</h2>
+                    <span class="las la-user-friends"></span>
+                </div>
+                <div class="card-progress">
+                    <small>Total Crimes Reported</small>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <h2>{{ dismissed_cases }}</h2>
+                    <span class="las la-user-friends"></span>
+                </div>
+                <div class="card-progress">
+                    <small>Dismissed Cases</small>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <h2>{{ solved_cases }}</h2>
+                    <span class="las la-thumbs-up"></span>
+                </div>
+                <div class="card-progress">
+                    <small>Crimes Solved</small>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <h2>{{ council }}</h2>
+                    <span class="las la-hourglass-half"></span>
+                </div>
+                <div class="card-progress">
+                    <small>Counseled Cases</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Cards (Placed after status cards) -->
+        <div class="card-container mt-4">
+            <div class="card">
+                <img class="card-img-top" src="{% static 'media/invest.png' %}" alt="Card image cap">
+                <div class="card-body">
+                    <a href="/register_investigator/" class="btn btn-custom btn-custom-primary">Register Investigator</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img-top" src="{% static 'media/OIP.png' %}" alt="Card image cap">
+                <div class="card-body">
+                    <a href="{% url 'register_teacher' %}" class="btn btn-custom btn-custom-primary">Register Teacher</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img-top" src="{% static 'media/stu.png' %}" alt="Card image cap">
+                <div class="card-body">
+                    <a href="/students/" class="btn btn-custom btn-custom-primary">Manage Student</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img-top" src="{% static 'media/psyc.jpeg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <a href="{% url 'register_psychologist' %}" class="btn btn-custom btn-custom-primary">Register Psychologist</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    </body>
+    </html>
+    

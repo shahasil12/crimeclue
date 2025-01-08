@@ -1,0 +1,158 @@
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Header */
+header {
+  background: #000000;
+  color: #d4d65e;
+  padding: 10px 5px;
+  text-align: center;
+}
+header .logo {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+header nav a {
+  color: #d4d65e;
+  margin: 0 15px;
+  text-decoration: none;
+}
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero Section */
+.hero-section {
+
+  height: 100vh;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 20px;
+}
+
+.hero-content h2 {
+  color: #000000;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+.hero-content p {
+  color: #d4d65e;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* CTA Buttons */
+.cta-buttons .cta-btn {
+  text-decoration: none;
+  background: #d4d65e;
+  color: #0a0a0a;
+  padding: 15px 30px;
+  border-radius: 5px;
+  margin: 10px;
+  transition: 0.3s;
+}
+.cta-buttons .cta-btn:hover {
+  background: #005bb5;
+}
+
+/* Features Section */
+.features-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+.feature {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+}
+.feature img {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+/* Process Section */
+.process-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+.process-steps {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.step {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+  background: #001f3f;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+footer a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+/* Cards Section */
+.cards-section {
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.card {
+  margin: 10px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 18rem;
+  box-sizing: border-box;
+}

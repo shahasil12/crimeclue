@@ -1,0 +1,116 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .header .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .header .nav ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  .header .nav ul li {
+    margin: 0 15px;
+  }
+  
+  .btn-report-now {
+    background-color: #e63946;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 50px;
+    background: #f1faee;
+  }
+  
+  .hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .hero-buttons .btn {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .hero-buttons .btn {
+    background-color: #457b9d;
+  }
+  
+  .hero-buttons .btn-outline {
+    background: none;
+    color: #457b9d;
+    border: 2px solid #457b9d;
+  }
+  
+  .features {
+    background: #fff;
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .features h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .feature-item {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+  
+  .footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .footer .footer-links a {
+    color: #fff;
+    margin: 0 10px;
+  }

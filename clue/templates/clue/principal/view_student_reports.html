@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports for {{ student.email }}</title>
+    <link rel="stylesheet" href="{% static 'clue/css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background-color: #f4f7fa;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h2 {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        table {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            padding: 15px;
+        }
+        td {
+            text-align: center;
+            padding: 12px;
+            font-size: 14px;
+            color: #555;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #e9f7ff;
+        }
+        .no-reports {
+            text-align: center;
+            font-size: 18px;
+            color: #888;
+            padding: 20px 0;
+        }
+        /* Button Styles */
+        .btn-view {
+            background-color: #28a745;
+            color: white;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn-view:hover {
+            background-color: #218838;
+            text-decoration: none;
+        }
+        .btn-view:active {
+            background-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center">Reports for {{ student.email }}</h2>
+
+    {% if reports %}
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Report ID</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Investigation Report</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in reports %}
+                    <tr>
+                        <td>{{ report.id }}</td>
+                        <td>{{ report.category }}</td>
+                        <td>{{ report.status }}</td>
+                        <td>
+                            {% for invest in investigate %}
+                                {% if invest.crime.id == report.id %}
+                                    <p>{{ invest.investigation_report }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4" class="no-reports">No reports found for this student.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-reports">No reports found for this student.</p>
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

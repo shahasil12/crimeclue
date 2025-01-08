@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Custom CSS for styling -->
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url("{% static 'media/images/hero-bg.png' %}") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Black overlay with transparency */
+            z-index: 0;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h2 {
+            color: #007bff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .list-group {
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .card {
+            margin-bottom: 2rem;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.9); /* White with transparency */
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            text-align: left;
+            color: #000;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+            padding: 0.5rem 2rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="content-wrapper">
+        <h2>Filtered Crime Reports</h2>
+        <div class="list-group">
+            {% for report in crime_reports %}
+                {% if report.counseling_report_details %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ report.category }} (ID: {{ report.id }})</h5>
+                            <p><strong>Reported By:</strong> {{ report.reported_by }}</p>
+                            <p><strong>Location:</strong> {{ report.location }}</p>
+                            <p><strong>Status:</strong> {{ report.get_status_display }}</p>
+                            <p><strong>Comment:</strong> {{ report.comment }}</p>
+                            <p><strong>Year:</strong> {{ report.year }}</p>
+                            {% if report.proof %}
+                                <p><strong>Proof:</strong> <a href="{{ report.proof.url }}" target="_blank">View Proof</a></p>
+                            {% endif %}
+                            <p><strong>Created At:</strong> {{ report.created_at }}</p>
+                            <p><strong>Updated At:</strong> {{ report.updated_at }}</p>
+                            <p><strong>Forwarded to Principal:</strong> {% if report.forwarded_to_principal %}Yes{% else %}No{% endif %}</p>
+
+                            <!-- Counseling Report Details -->
+                            <p><strong>Counseling Report Details:</strong> {{ report.counseling_report_details }}</p>
+
+                            <!-- Display Counseling Approved Status -->
+                            {% if report.status == "Counseling Approved" %}
+                                <p><strong style="color: green;">Counseling Status:</strong> Approved</p>
+                            {% endif %}
+
+                            <!-- Approve Counseling button -->
+                            {% if report.status != "Counseling Approved" %}
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="crime_id" value="{{ report.id }}">
+                                    <button type="submit" class="btn btn-success">Approve Counseling</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% empty %}
+                <p>No reports available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

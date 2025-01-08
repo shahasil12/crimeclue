@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Details</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .container .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .container .input-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .container .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .container .input-group input:focus {
+            border-color: #4facfe;
+            outline: none;
+            box-shadow: 0 0 8px rgba(79, 172, 254, 0.5);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button-group button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-group .update {
+            background-color: #4facfe;
+            color: white;
+        }
+
+        .button-group .update:hover {
+            background-color: #0099cc;
+        }
+
+        .button-group .cancel {
+            background-color: #ff6961;
+            color: white;
+        }
+
+        .button-group .cancel:hover {
+            background-color: #e55650;
+        }
+
+        /* Fancy Success Message */
+        .success {
+            color: #28a745;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 20px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            animation: slideIn 1s ease-out, fadeIn 2s ease-out;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Slide In Animation */
+        @keyframes slideIn {
+            0% { transform: translateY(-20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Fade In Effect */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update Details</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="current_email">Current Email</label>
+                <input type="email" name="current_email" placeholder="Enter your current email" required>
+            </div>
+            <div class="input-group">
+                <label for="new_email">New Email</label>
+                <input type="email" name="new_email" placeholder="Enter your new email">
+            </div>
+            <div class="input-group">
+                <label for="phone">Phone Number</label>
+                <input type="number" name="phone" placeholder="Enter your phone number">
+            </div>
+            <div class="input-group">
+                <label for="profile_picture">Profile Picture</label>
+                <input type="file" name="profile_picture" accept="image/*">
+            </div>
+            <div class="button-group">
+                <button type="submit" class="update">Update</button>
+                <button type="reset" class="cancel">Cancel</button>
+            </div>
+        </form>
+
+        <!-- Success Message (This will be shown after a successful update) -->
+        <div class="success">
+            <p>🎉 Your details have been updated successfully! 🎉</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% load static %}
+
+{% extends "clue/principal/index.html" %}
+
+{% block content %}
+  <div class="container">
+    <h2>Update Status for Report #{{ report.id }}</h2>
+
+    <p><strong>Current Status:</strong> {{ report.status }}</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_status">Update Status</label>
+        {{ form.status }} <!-- This will render the status field from the form -->
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Update Status</button>
+    </form>
+
+    <br>
+    <a href="{% url 'some_view' %}" class="btn btn-secondary">Back to Reports</a>
+  </div>
+{% endblock %}

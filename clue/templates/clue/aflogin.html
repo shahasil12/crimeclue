@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crimeclue - Empowering Communities</title>
+  {% load static %}
+  <link href="{% static 'css/stdhome.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="{% static 'clue/css/stdhome.css' %}" rel="stylesheet">
+  <style>
+    .profile-section {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 300px;
+      height: 100%;
+      background-color: #fff;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+      overflow-y: auto;
+      transition: right 0.3s ease;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .profile-section.open {
+      right: 0;
+    }
+    .profile-section h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .profile-section img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    .profile-section p {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .profile-section p span {
+      font-weight: bold;
+    }
+    .btn-close-profile {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+    .btn-close-profile:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">{{ request.user.username }}</div>
+    <nav class="nav">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="/upload/">Report Crime</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="/stdlogin/">Logout</a></li>
+      </ul>
+    </nav>
+    <a href="/view_reports/" class="btn-report-now">View Your Reports</a>
+    <a href="/update_details/" class="btn-report-now">Update Details</a>
+    <a href="javascript:void(0);" class="btn-report-now" onclick="openProfile()">
+      <i class="fas fa-user"></i>
+    </a>
+  </header>
+
+  <section class="hero" id="home">
+    <h1>Empowering Communities Through Safer Reporting</h1>
+    <p>Seamlessly report crimes and track their status with ease.</p>
+  </section>
+
+  <section class="features" id="features">
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3>Quick Registration</h3>
+        <p>Secure OTP-based registration for easy access.</p>
+      </div>
+      <div class="feature-item">
+        <h3>Crime Reporting</h3>
+        <p>Report incidents with a streamlined process.</p>
+      </div>
+      <div class="feature-item">
+        <h3>Status Tracking</h3>
+        <p>Track the progress of your reports in real-time.</p>
+      </div>
+      <div class="feature-item">
+        <h3>Council Integration</h3>
+        <p>Seamless communication with administrative councils.</p>
+      </div>
+    </div>
+  </section>
+  <div class="profile-section" id="profileSection">
+    <h1>{{ profile.names }}</h1>
+ {% if profile_picture %}
+    <img src="{{ profile_picture }}" alt="Profile Picture">
+{% else %}
+    <i class="fas fa-user-circle" style="font-size: 100px; color: #888;"></i> 
+{% endif %}
+
+
+    <p><span>Name:</span> {{ profile.names }}</p>
+    <p><span>Email:</span> {{ profile.email }}</p>
+    <p><span>Phone:</span> {{ profile.phone }}</p>
+    <a href="/update_details/" class="btn-close-profile">Update</a>
+    <a href="javascript:void(0);" class="btn-close-profile" onclick="closeProfile()">Close</a>
+  </div>
+  
+
+  <footer class="footer">
+    <p>&copy; 2024 Crimeclue. All rights reserved.</p>
+    <div class="footer-links"> 
+      <a href="#privacy">Privacy Policy</a> 
+      <a href="#terms">Terms of Service</a> 
+    </div>
+  </footer>
+
+  <script>
+     function openProfile() {
+    const profileSection = document.getElementById('profileSection');
+    profileSection.style.transition = "right 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), background 0.4s ease-in-out";
+    profileSection.classList.add('open');
+  }
+
+  function closeProfile() {
+    const profileSection = document.getElementById('profileSection');
+    profileSection.classList.remove('open');
+  }
+  </script>
+</body>
+</html>

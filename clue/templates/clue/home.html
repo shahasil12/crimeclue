@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  {% load static %}
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'clue/css/bootstrap.css' %}" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
+  <!-- Fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Owl carousel stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- Font awesome style -->
+  <link href="{% static 'clue/css/font-awesome.min.css' %}" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'clue/css/style_1.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Responsive style -->
+  <link href="{% static 'clue/css/responsive.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="hero_area">
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="{% static 'media/images/hero-bg.png' %}" alt="Hero Background">
+      </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="">
+            <span>Crime Clue</span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/home_login/">Report Crime</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#service">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#why">Why Us</a>
+              </li>
+              <button id="install-button" style="display: none;">Install CrimeClue</button>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/admins/"> <i class="fa fa-user" aria-hidden="true"></i>
+                  Admin</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- slider section -->
+    <section class="slider_section">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>
+                      Report a Crime <br>
+                      Anonymously
+
+                    </h1>
+                    <p>
+                      Help create a safer campus by reporting incidents anonymously. Your identity will be protected,
+                      and the crime will be investigated by the authorities.
+                    </p>
+                    <div class="btn-box">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="{% static 'media/images/logo.png' %}" alt="Crime Reporting">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>
+                      Secure & Confidential <br>
+                      Crime Investigation
+                    </h1>
+                    <p>
+                      Once your crime report is submitted, it will be investigated confidentially. The results are
+                      shared with the principal and necessary actions will be taken.
+                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn1">
+
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="{% static 'media/images/logo.png' %}" alt="Investigation Process">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>
+                      Counseling & Support <br>
+                      If Needed
+                    </h1>
+                    <p>
+                      If the investigation reveals that the culprit requires counseling, they will be referred to a
+                      counselor to receive support and guidance.
+                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn1">
+
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="{% static 'media/images/logo.png' %}" alt="Counseling">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- end slider section -->
+
+    <!-- End Header Section -->
+  </div>
+
+ <!-- Statistics Section ->
+  <!-- Services Section -->
+<section class="service_section layout_padding" id="service">
+  <div class="service_container">
+      <div class="container">
+          <div class="heading_container heading_center">
+              <h2>
+                  Our <span>Services</span>
+              </h2>
+              <p>
+                  We provide comprehensive services to ensure safe reporting, investigation, and resolution of campus
+                  incidents. Our platform ensures confidentiality and transparency throughout the process.
+              </p>
+          </div>
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="box">
+                      <div class="img-box">
+                          <i class="fa fa-user-secret" aria-hidden="true"></i> <!-- Icon for Anonymous Reporting -->
+                      </div>
+                      <div class="detail-box">
+                          <h5>Anonymous Reporting</h5>
+                          <p>
+                              Report crimes confidentially and anonymously. Your identity remains protected throughout the
+                              process, ensuring your safety and privacy.
+                          </p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="box">
+                      <div class="img-box">
+                          <i class="fa-solid fa-magnifying-glass"></i> <!-- Icon for Secure Investigation -->
+                      </div>
+                      <div class="detail-box">
+                          <h5>Secure Investigation</h5>
+                          <p>
+                              Our investigators handle reports with full confidentiality. Each report is thoroughly verified
+                              before it is forwarded for further action by the principal.
+                          </p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="box">
+                      <div class="img-box">
+                          <i class="fa fa-hand-holding-heart" aria-hidden="true"></i> <!-- Icon for Counseling Support -->
+                      </div>
+                      <div class="detail-box">
+                          <h5>Counseling & Support</h5>
+                          <p>
+                              If necessary, the person involved in the crime will be referred for counseling. Our counselors
+                              provide support and guidance to help individuals improve and move forward.
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+    <!-- End Services Section -->
+
+    <!-- Footer Section -->
+    <section class="footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved.
+          <a href="https://www.yoursite.com">ISS</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- end service section -->
+    <!-- about section -->
+    <section class="about_section layout_padding" id="about">
+      <div class="container">
+        <div class="heading_container heading_center">
+          <h2>
+            About <span>Us</span>
+          </h2>
+          <p>
+            Our goal is to provide a safe and transparent environment where students and teachers can report crimes or
+            incidents confidentially, with the assurance that the matter will be investigated and resolved.
+          </p>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="img-box">
+              <img src="{% static 'media/images/logo.png' %}" alt="About Crime Reporting">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="detail-box">
+              <h3>
+                We Are The Crime Reporting System
+              </h3>
+              <p>
+                Our platform allows students and teachers to report incidents anonymously. Once reported, the incident
+                is investigated thoroughly by professionals, ensuring both the safety and confidentiality of everyone
+                involved. Our platform guarantees that the culprit will be referred to the principal for further action,
+                and if needed, counseling will be provided.
+              </p>
+              <p>
+                We are committed to creating a safer campus environment by addressing crimes in a transparent and fair
+                manner. We aim to build trust and security within our community, offering a system that encourages
+                accountability and resolution.
+              </p>
+
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end about section -->
+    <!-- why section -->
+    <section id="why" class="why_section layout_padding">
+      <div class="container">
+        <div class="heading_container heading_center">
+          <h2>
+            Why Choose <span>Us</span>
+          </h2>
+        </div>
+        <div class="why_container">
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static 'media/images/w1.png' %}" alt="Expert Management">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Expert Investigation Team
+              </h5>
+              <p>
+                Our team of skilled investigators ensures that every report is handled with professionalism and
+                thoroughness. Each case is carefully examined to determine its legitimacy before being forwarded to the
+                principal for further action.
+              </p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static 'media/images/w2.png' %}" alt="Secure Platform">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Secure & Confidential Reporting
+              </h5>
+              <p>
+                We prioritize your privacy. All reports are kept anonymous, ensuring that your identity is protected
+                throughout the process. The information is only accessible to investigators and the principal.
+              </p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static 'media/images/w3.png' %}" alt="Timely Action">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Swift Resolution Process
+              </h5>
+              <p>
+                We aim to resolve issues quickly and effectively. Once a crime is reported and verified, it is promptly
+                forwarded to the principal for appropriate action, ensuring a timely and fair resolution.
+              </p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="img-box">
+              <img src="{% static 'media/images/w4.png' %}" alt="Counseling Support">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Counseling & Support
+              </h5>
+              <p>
+                If needed, individuals involved in reported incidents are referred to professional counselors. We
+                provide necessary support to help them navigate difficult situations and improve their future behavior.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="btn-box">
+
+
+          </a>
+        </div>
+      </div>
+    </section>
+   <!-- Statistics Section -->
+<section class="statistics_section layout_padding" id="stats">
+  <div class="service_container">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Our <span>Statistics</span>
+        </h2>
+        <p>
+          Here are some key figures that show the impact of our platform.
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="box">
+            <div class="img-box">
+              <i class="fa fa-file-alt" aria-hidden="true"></i> <!-- Icon for Crimes Reported -->
+            </div>
+            <div class="detail-box">
+              <h5>Total Crimes Reported</h5>
+              <h3 class="count" data-count="{{ total_crimes_reported }}">0</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="box">
+            <div class="img-box">
+              <i class="fa fa-users" aria-hidden="true"></i> <!-- Icon for Logged In Students -->
+            </div>
+            <div class="detail-box">
+              <h5>Total Students Logged In</h5>
+              <h3 class="count" data-count="{{ total_students_logged_in }}">0</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="box">
+            <div class="img-box">
+              <i class="fa fa-chalkboard-teacher" aria-hidden="true"></i> <!-- Icon for Logged In Teachers -->
+            </div>
+            <div class="detail-box">
+              <h5>Total Teachers Logged In</h5>
+              <h3 class="count" data-count="{{ total_teachers_logged_in }}">0</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="box">
+            <div class="img-box">
+              <i class="fa fa-check-circle" aria-hidden="true"></i> <!-- Icon for Cases Solved -->
+            </div>
+            <div class="detail-box">
+              <h5>Total Cases Solved</h5>
+              <h3 class="count" data-count="{{ total_cases_solved }}">0</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- end why section -->
+    <!-- info section -->
+    <section class="info_section layout_padding2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 info_col">
+            <div class="info_contact">
+              <h4>
+                Contact Information
+              </h4>
+              <div class="contact_link_box">
+                <a href="#">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <span>
+                    ISS COLLEGE
+                  </span>
+                </a>
+                <a href="tel:+011234567890">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  <span>
+                    Call +01 1234567890
+                  </span>
+                </a>
+                <a href="mailto:crimeclue33@gmail.com">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                  <span>
+                    crimeclue33@gmail.com
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="info_social">
+              <a href="#">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="#">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="#">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="#">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 info_col">
+            <div class="info_detail">
+              <h4>
+                About Us
+              </h4>
+              <p>
+                Our platform offers a safe and confidential space for students and teachers to report crimes
+                anonymously. We ensure quick investigation and action, prioritizing justice and support for those
+                involved.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-2 mx-auto info_col">
+            <div class="info_link_box">
+              <h4>
+                Quick Links
+              </h4>
+              <div class="info_links">
+                <a class="active" href="#">
+                  Home
+                </a>
+                <a href="#">
+                  About Us
+                </a>
+                <a href="#">
+                  Services
+                </a>
+                <a href="#">
+                  Why Choose Us
+                </a>
+                <a href="#">
+                  Team
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end info section -->
+    <!-- footer section -->
+    <section class="footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved.
+          <a href=>CrimeClue</a>
+        </p>
+      </div>
+    </section>
+    <!-- end footer section -->
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <!-- Owl Slider -->
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- Custom JS -->
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+    <!-- Google Map -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+    <!-- End Google Map -->
+
+    <script type="text/javascript">
+      
+      // Update the year dynamically
+      document.getElementById("displayYear").innerHTML = new Date().getFullYear();
+    </script>
+<!-- Add this script to handle the number animation -->
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.count');
+    const speed = 1000; // The lower the value, the faster the animation
+  
+    counters.forEach(counter => {
+      const animate = () => {
+        const value = +counter.getAttribute('data-count');
+        const data = +counter.innerText;
+        
+        // Increment value
+        const time = value / speed;
+        if (data < value) {
+          counter.innerText = Math.ceil(data + time);
+          setTimeout(animate, 1);
+        } else {
+          counter.innerText = value;
+        }
+      }
+  
+      animate();
+    });
+  });
+  let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    event.preventDefault();
+    // Stash the event so it can be triggered later
+    deferredPrompt = event;
+    // Show the install button
+    document.getElementById('install-button').style.display = 'block';
+});
+
+document.getElementById('install-button').addEventListener('click', () => {
+    // Show the prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+        } else {
+            console.log('User dismissed the install prompt');
+        }
+        deferredPrompt = null;
+    });
+});
+
+  </script>
+</body>
+
+
+</html>

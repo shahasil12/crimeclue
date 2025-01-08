@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Submit Investigation Report</title>
+    {% load static %}
+    <link href="{% static 'clue/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'clue/css/home.css' %}" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 56px; /* Adjust for navbar height */
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .form-container {
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/investigator/">Investigator Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Submit Investigation Report</h1>
+            <form method="post" action="{% url 'submit_report' crime_report.id %}" id="investigationForm">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="crimeId" class="form-label">Crime ID</label>
+                    <input type="text" class="form-control" id="crimeId" value="{{ crime_report.id }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="crimeType" class="form-label">Crime Type</label>
+                    <input type="text" class="form-control" id="crimeType" value="{{ crime_report.category }}" readonly>
+                </div>
+                <div class="mb-3 hidden" id="culprit-fields">
+                    <label for="culpritName" class="form-label">Culprit Name</label>
+                    <input type="text" class="form-control" id="culpritName" name="culprit_name" value="{{ crime_report.culprit_name }}">
+                    <label for="culpritClass" class="form-label">Culprit Class</label>
+                    <input type="text" class="form-control" id="culpritClass" name="culprit_class" value="{{ crime_report.culprit_class }}">
+                </div>
+                <div class="mb-3">
+                    <label for="investigationReport" class="form-label">Investigation Report</label>
+                    <textarea class="form-control" id="investigationReport" name="investigation_report" rows="5" required>
+                        {% if crime_details %}
+                        {{ crime_details.investigation_report }}
+                        {% endif %}
+                    </textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select id="status" name="status" class="form-select" required onchange="toggleCulpritFields()">
+                        <option value="">Select Status</option>
+                        <option value="Verified" {% if crime_report.status == "Verified as Real" %}selected{% endif %}>Verified</option>
+                        <option value="Fake" {% if crime_report.status == "Verified as Fake" %}selected{% endif %}>Fake</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleCulpritFields() {
+            const status = document.getElementById('status').value;
+            const culpritFields = document.getElementById('culprit-fields');
+            if (status === 'Fake') {
+                culpritFields.classList.add('hidden');
+            } else {
+                culpritFields.classList.remove('hidden');
+            }
+        }
+
+        // Initialize the form with the correct visibility
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleCulpritFields();
+        });
+
+        // Add event listener for form submission
+        document.getElementById('investigationForm').addEventListener('submit', function(event) {
+            if (!confirm('Are you sure you want to submit this report?')) {
+                event.preventDefault(); // Prevent form submission if the user clicks "Cancel"
+            }
+        });
+    </script>
+</body>
+</html>

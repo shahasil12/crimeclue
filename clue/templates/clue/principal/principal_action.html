@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal Action</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'clue/css/bootstrap.min.css' %}">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center">Principal Action for Crime Report {{ crime_report.id }}</h2>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <strong>Crime Report Details</strong>
+        </div>
+        <div class="card-body">
+            <p><strong>Category:</strong> {{ crime_report.category }}</p>
+            <p><strong>Date:</strong> {{ crime_report.date }}</p>
+            <p><strong>Location:</strong> {{ crime_report.location }}</p>
+            <p><strong>Status:</strong> {{ crime_report.get_status_display }}</p>
+            <p><strong>Reported By:</strong> {{ crime_report.reported_by }}</p>
+            <p><strong>Comment:</strong> {{ crime_report.comment }}</p>
+        </div>
+    </div>
+
+    <h3>Principal Action Form</h3>
+    <form method="post" onsubmit="return confirmSubmission()">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="investigation_report">Investigation Report</label>
+            <textarea 
+                id="investigation_report" 
+                name="investigation_report" 
+                class="form-control" 
+                rows="6" 
+                readonly 
+                disabled>{{ crime.investigation_report }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="principal_action">Principal Action</label>
+            <select id="principal_action" name="principal_action" class="form-control" required aria-label="Select principal action">
+                <option value="" disabled selected>Select an action</option>
+                <option value="Warning">Warning</option>
+                <option value="Suspended">Suspend</option>
+                <option value="Dismissed">Dismissed</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="principal_action_text">Principal Action Details</label>
+            <textarea 
+                id="principal_action_text" 
+                name="principal_action_text" 
+                class="form-control" 
+                rows="4" 
+                placeholder="Enter details of the action taken" 
+                aria-label="Enter principal action details"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Submit Action</button>
+    </form>
+</div>
+
+<script>
+    function confirmSubmission() {
+        return confirm('Are you sure you want to submit this action?');
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

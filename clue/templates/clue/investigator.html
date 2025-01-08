@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>Investigation Panel</title>
+    {% load static %}
+    <link href="{% static 'clue/css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'clue/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+        /* Badge styles for different statuses */
+        .badge-warning { background-color: #ffc107; color: black; }
+        .badge-primary { background-color: #0d6efd; color: white; }
+        .badge-danger { background-color: #dc3545; color: white; }
+        .badge-success { background-color: #198754; color: white; }
+        .badge-dark { background-color: #212529; color: white; }
+        .badge-info { background-color: #17a2b8; color: white; }
+
+        body {
+            padding-top: 56px;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .table-container {
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            margin: 0 auto;
+            width: 100%;
+        }
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #343a40;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand fs-4" href="#">Investigation Panel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reports</a>
+                    </li>
+                </ul>
+                <form class="d-flex gap-2 mt-3">
+                    <input class="form-control" type="search" placeholder="Search for crimes">
+                    <button class="btn btn-success" type="submit">Search</button>
+                </form>
+                <form>
+                    <a href="/upload/" class="btn btn-warning w-100 mt-3">Report Crime</a>
+                </form>
+                <form class="mt-3">
+                    {% csrf_token %}
+                    <a href="/investigator_login/" style="text-decoration: none;" class="mt-3">
+                        <button type="submit" class="btn btn-info w-100">Logout</button>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<h1 class="text-center">Crime Reports</h1>
+<div class="table-container">
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Date</th>
+                    <th>Crime Type</th>
+                    <th>Proof</th>
+                    <th>Details</th>
+                    <th>Comment</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in crimes %}
+                    <tr>
+                        <td>{{ report.date }}</td>
+                        <td>{{ report.category }}</td>
+                        <td>
+                            {% if report.proof %}
+                                <img src="{{ report.proof.url }}" alt="Uploaded Proof" width="150">
+                                <!-- Add download link -->
+                                <br>
+                                <a href="{{ report.proof.url }}" download="{{ report.proof.name }}" class="btn btn-info btn-sm mt-2">Download Proof</a>
+                            {% else %}
+                                No Proof Available
+                            {% endif %}
+                        </td>
+                        
+                        <td>{{ report.year }}</td>
+                        <td>{{ report.comment }}</td>
+                        <td>
+                            {% if report.status == "Pending" %}
+                                <span class="badge badge-warning">{{ report.status }}</span>
+                            {% elif report.status == "Forwarded to Principal" %}
+                                <span class="badge badge-primary">{{ report.status }}</span>
+                            {% elif report.status == "Verified as Fake" %}
+                                <span class="badge badge-danger">{{ report.status }}</span>
+                            {% elif report.status == "Verified as Real" %}
+                                <span class="badge badge-primary">{{ report.status }}</span>
+                            {% elif report.status == "Counseling Approved" %}
+                                <span class="badge badge-success">{{ report.status }}</span>
+                            {% elif report.status == "Closed by Principal" %}
+                                <span class="badge badge-dark">{{ report.status }}</span>
+                            {% else %}
+                                <span class="badge badge-info">Unknown Status</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if report.status == "Pending" %}
+                            <a href="{% url 'submit_report' report.id %}" class="btn btn-warning w-100 mt-3">Report Crime</a>
+                        {% else %}
+                            Report 
+                            <p class="text-muted mt-3">Already Submitted</p>
+                        {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="7">No crime reports available.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychologist Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'clue/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'clue/css/bootstrap.min.css' %}">
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin-top: 80px;
+        }
+
+        h2, h3 {
+            color: #004085;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #004085;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 9999;
+        }
+
+        .navbar a {
+            color: #ffffff;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #003366;
+            border-radius: 4px;
+        }
+
+        .navbar-brand {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        /* Card Styling for Sections */
+        .card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 30px;
+        }
+
+        .card-header {
+           
+            color: #ffffff;
+            font-size: 1.2em;
+            padding: 12px 15px;
+        }
+
+      /* Card Body Styling */
+.card-body {
+    font-size: 1.1em;
+    color: #333;  /* Ensuring text is dark enough */
+    background-color: #ffffff;  /* Light background color for visibility */
+    padding: 30px;
+}
+
+
+        /* Button Styling */
+        .btn {
+            border-radius: 4px;
+            padding: 10px 15px;
+            font-size: 1.1em;
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive Table */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #004085;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e9e9e9;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #004085;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .navbar a {
+                font-size: 14px;
+                padding: 10px;
+            }
+            .card {
+                padding: 15px;
+            }
+            .table-responsive {
+                overflow-x: scroll;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Psychologist Dashboard</a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="{% url 'crime_report_table' %}"><i class="fas fa-exclamation-circle"></i> View Crime Reports</a>
+            <a class="nav-link" href="{% url 'investigate_table' %}"><i class="fas fa-search"></i> View Investigation Reports</a>
+            <a class="nav-link" href="{% url 'psychologist_logout' %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to log out?');"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Assigned Cases</h2>
+            </div>
+            <div class="card-body">
+                {% if assigned_cases %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Case ID</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for case in assigned_cases %}
+                                <tr>
+                                    <td>{{ case.id }}</td>
+                                    <td>{{ case.category }}</td>
+                                    <td>{{ case.status }}</td>
+                                    <td>
+                                        <a href="{% url 'submit_counseling_report' case.id %}" class="btn btn-primary">Submit Counseling Report</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p>No cases assigned yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Psychologist Dashboard | All Rights Reserved</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

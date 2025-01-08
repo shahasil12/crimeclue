@@ -1,0 +1,52 @@
+body {
+    padding-top: 80px;
+    background-color: #f8f9fa;
+}
+.navbar {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.carousel-inner img {
+    height: 400px;
+    object-fit: cover;
+}
+.card-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+.card {
+    flex: 1;
+    max-width: 300px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.card:hover {
+    transform: translateY(-10px);
+}
+.container form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+table {
+    background-color: #333; /* Set table background to black */
+    color: white; /* Set text color to white for readability */
+}
+
+th, td {
+    border: 1px solid #ddd; /* Keep border color for contrast */
+    color: white; /* Set text color to white in table rows */
+}
+
+th {
+    background-color: #444; /* Slightly lighter background for table headers */
+}
+
+td {
+    background-color: #555; /* Darker background for table cells */
+}

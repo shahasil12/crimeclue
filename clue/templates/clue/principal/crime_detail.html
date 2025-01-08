@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Crime Report Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'clue/css/bootstrap.min.css' %}">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url("{% static 'media/images/hero-bg.png' %}") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Black overlay with transparency */
+            z-index: 0;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-bottom: 2px solid #6c63ff;
+        }
+
+        .bg-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: #6c63ff;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        .bg-img i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .container {
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card {
+            margin-bottom: 2rem;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.9); /* White with transparency */
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            text-align: left;
+            color: #000;
+        }
+
+        .btn {
+            background-color: #6c63ff;
+            color: white;
+            border: none;
+            padding: 0.5rem 2rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #5348c5;
+            color: #fff;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="content-wrapper">
+        <header>
+            <div class="header-content">
+                <div class="user-left">
+                    <div class="bg-img">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    {% if request.session.USERNAME %}
+                        <span>Welcome, {{ request.session.USERNAME }}</span>
+                    {% else %}
+                        <span>Error: Username not found</span>
+                    {% endif %}
+                </div>
+                <div class="user-right">
+                    <form action="/logout/" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-info">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="container">
+                <h5>Crime Report Details</h5>
+                {% for crime in crimes %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5>Crime ID: {{ crime.crime.id }}</h5>
+                            <p><strong>Category:</strong> {{ crime.crime.category }}</p>
+                            <p><strong>Location:</strong> {{ crime.crime.location }}</p>
+                            <p><strong>Year:</strong> {{ crime.crime.year }}</p>
+                            <p><strong>Reported By:</strong> {{ crime.crime.reported_by }}</p>
+                            <p><strong>Description:</strong> {{ crime.crime.comment }}</p>
+                            <p><strong>Status:</strong> {{ crime.crime.status }}</p>
+
+                            <h5>Investigation Report</h5>
+                            <p>{{ crime.investigation_report }}</p>
+                            <p>{{ crime.culprit_name }}</p>
+                            <p>{{ crime.culprit_class }}</p>
+
+                            {% if crime.principal_action %}
+                                <p><strong>Principal Action:</strong> {{ crime.principal_action }}</p>
+                            {% else %}
+                                <form action="{% url 'principal_action' crime.crime.id %}" method="get">
+                                    <button type="submit" class="btn btn-warning">Take Action</button>
+                                </form>
+                            {% endif %}
+
+                            <form action="{% url 'delete_crime_report' crime.crime.id %}" method="post" onsubmit="return confirm('Are you sure you want to delete this crime report?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Delete Report</button>
+                            </form>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No crime reports found.</p>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+
