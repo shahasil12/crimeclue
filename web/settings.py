@@ -79,14 +79,15 @@ WSGI_APPLICATION = 'web.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'crimeclue',
-        'USER': 'root',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get("DB_NAME", "crimeclue_db"),
+        'USER': os.environ.get("DB_USER", "crimeclue_db_user"),
+        'PASSWORD': os.environ.get("DB_PASSWORD", "jS8SDYXZouIztbm55CwN3fGeXIhSf6zt"),
+        'HOST': os.environ.get("DB_HOST", "localhost"),
+        'PORT': os.environ.get("DB_PORT", "5432"),
     }
 }
+
 
 
 # Password validation
