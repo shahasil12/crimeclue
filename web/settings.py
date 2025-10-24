@@ -75,17 +75,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'web.wsgi.application'
 
 
-# Database
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get("DB_NAME", "crimeclue_db"),
         'USER': os.environ.get("DB_USER", "crimeclue_db_user"),
         'PASSWORD': os.environ.get("DB_PASSWORD", "jS8SDYXZouIztbm55CwN3fGeXIhSf6zt"),
-        'HOST': os.environ.get("DB_HOST", "localhost"),
+        'HOST': os.environ.get("DB_HOST", "dpg-d3tmne7diees73dmef5g-a"),
         'PORT': os.environ.get("DB_PORT", "5432"),
     }
 }
+
 
 
 
