@@ -21,6 +21,12 @@ def home(request):
 from django.shortcuts import render
 from .models import CrimeReport
 
+# clue/views.py
+
+
+def add_user(request):
+    crimeclue.objects.create(username='user', password='password')
+    return HttpResponse("User added")
 
 
 
