@@ -43,6 +43,6 @@ urlpatterns = [
       path('password_reset/verify/<str:email>/',views.password_reset_verify, name='password_reset_verify'),
       path('update_details/',views.update_details, name='update_details'),
       path('admins/',views.admins, name='admins'),
-    path('add_user/', add_user, name = 'add_user'),
+    path('add_user/', views.add_user, name = 'add_user'),
 
 ]
