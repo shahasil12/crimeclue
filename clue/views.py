@@ -13,6 +13,11 @@ from .models import CrimeReport, crimeclue, Teacher
 from .forms import TeacherRegistrationForm
 from django import template
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://crimeclue.onrender.com",
+]
+
+
 from django.core.mail import send_mail
 from django.template.loader import get_template 
 def home(request):
