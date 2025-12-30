@@ -80,15 +80,15 @@ WSGI_APPLICATION = 'web.wsgi.application'
 
 
 
+import os
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DB_NAME", "crimeclue_db"),
-        'USER': os.environ.get("DB_USER", "crimeclue_db_user"),
-        'PASSWORD': os.environ.get("DB_PASSWORD", "jS8SDYXZouIztbm55CwN3fGeXIhSf6zt"),
-        'HOST': os.environ.get("DB_HOST", "dpg-d3tmne7diees73dmef5g-a"),
-        'PORT': os.environ.get("DB_PORT", "5432"),
-    }
+    "default": dj_database_url.config(
+        default="postgresql://neondb_owner:npg_PednV0bXpHJ3@ep-silent-hat-ad6alsix-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
 
 
