@@ -80,16 +80,23 @@ WSGI_APPLICATION = 'web.wsgi.application'
 
 
 
-import os
-import dj_database_url
+
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default="postgresql://neondb_owner:npg_PednV0bXpHJ3@ep-silent-hat-ad6alsix-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
-        conn_max_age=600,
-        ssl_require=True,
-    )
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "neondb",
+        "USER": "neondb_owner",
+        "PASSWORD": "npg_PednV0bXpHJ3",
+        "HOST": "ep-silent-hat-ad6alsix-pooler.c-2.us-east-1.aws.neon.tech",
+        "PORT": "5432",
+        "OPTIONS": {
+            "sslmode": "require",
+            "channel_binding": "require",
+        },
+    }
 }
+
 
 
 
